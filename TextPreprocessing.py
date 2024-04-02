@@ -19,6 +19,12 @@ class TextPreprocessing():
         Preprocess the given text in a text file
         This class is for vectorization methods like Word2Vec, GloVe
 
+    Used packages:
+        1. NLTK
+        2. SpaCy
+            To install model for lemmatization, the command line is:
+                python -m spacy download en_core_web_sm
+
     Methods (Process steps):
     1. read_txt: Load the text
     2. remove_punctuation:
