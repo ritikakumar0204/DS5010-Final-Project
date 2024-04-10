@@ -38,7 +38,7 @@ class TextPreprocessing():
     7. lemmatize:
         Lemmatize the tokens in the list. E.g. better -> well, cats -> cat
     8. preprocess:
-        Preprocess the text, return the list of processed tokens
+        Preprocess the text, return a processed text (str)
 
     Attributes:
         filename - str - the name of the text file
@@ -196,8 +196,7 @@ class TextPreprocessing():
         Method: preprocess
             Preprocess the texts and make them ready
             for downstream works like vectorization
-        :return: a list of processed tokens
+        :return: a string which joins a list of processed tokens together
         """
-        C:\Users\xin\Desktop\NEU_Classses\DS
-        5010\DS5010 - Final - Project
+
         return " ".join(self.lemmatize())
