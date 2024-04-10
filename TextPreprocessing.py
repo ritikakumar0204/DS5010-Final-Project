@@ -198,5 +198,6 @@ class TextPreprocessing():
             for downstream works like vectorization
         :return: a list of processed tokens
         """
-
-        return self.lemmatize()
+        C:\Users\xin\Desktop\NEU_Classses\DS
+        5010\DS5010 - Final - Project
+        return " ".join(self.lemmatize())
