@@ -26,16 +26,18 @@ class TextPreprocessing():
                 python -m spacy download en_core_web_sm
 
     Methods (Process steps):
-    1. read_txt: Load the text
-    2. remove_punctuation:
+    1. read_txt: Load the text in a txt file
+    2. set_text: Set a new text
+    3. get_text: Get the current text
+    4. remove_punctuation:
         Lowercase the text and remove the non-alphanumeric characters
-    3. tokenize:
+    5. tokenize:
         Tokenize the text, splitting the text into a list of words
-    4. remove_stopwords:
+    6. remove_stopwords:
         Use NLTK's stopwords library to remove stopwords in the list of tokens
-    5. lemmatize:
+    7. lemmatize:
         Lemmatize the tokens in the list. E.g. better -> well, cats -> cat
-    6. preprocess:
+    8. preprocess:
         Preprocess the text, return the list of processed tokens
 
     Attributes:
@@ -43,30 +45,44 @@ class TextPreprocessing():
         text - str - the text in the file
     """
 
-    def __init__(self, textfile):
+    def __init__(self, text, file_given=False):
         """
         This is the constructor of the TextPreprocessing class
         Attributes:
-            filename - str - the name of the text file
-            text - str - the text in the file
+            text - str - the text ready to be processed or the txt file name
+            file_given - bool
+                - True if the parameter text indicates the filename
+                    (text = "filename.txt")
+                - (Default) False if the parameter text indicates the whole text
+                    (text = "This is a text.")
         """
+        try:
+            if file_given:
+                current_text = self.read_txt(text)
+            else:
+                current_text = text
 
-        self.filename = textfile
+            if current_text is not None:
+                self.text = current_text
 
-        text = self.read_txt()
-        if text is not None:
-            self.text = text
+        except Exception as error:
+            log_error(f"{error}", "__init__",
+                      "TextPreprocessing.py")
+            return
 
-    def read_txt(self):
+    def read_txt(self, filename=None):
         """
         Method: read_txt
             Reads text in the text file
-
+        :param: filename - str - the name of the text file
         :return: a large text string
         """
 
+        if filename is None:
+            return
+
         try:
-            with open(self.filename, mode = "r", encoding = "utf-8") as file:
+            with open(filename, mode = "r", encoding = "utf-8") as file:
                 whole_text = file.read()
                 return whole_text
 
@@ -74,6 +90,38 @@ class TextPreprocessing():
             log_error(f"{error}", "read_txt",
                       "TextPreprocessing.py")
             return
+
+    def set_text(self, text, file_given=False):
+        """
+        Method: set_text
+            To set a new text
+
+        :param:
+            text - str - the text ready to be processed or the txt file name
+            file_given - bool
+                - True if the parameter text indicates the filename
+                    (text = "filename.txt")
+                - False if the parameter text indicates the whole text
+                    (text = "This is a text.")
+        """
+        try:
+            if file_given:
+                current_text = self.read_txt(text)
+            else:
+                current_text = text
+
+            if current_text is not None:
+                self.text = current_text
+            else:
+                print("The text has not been changed.")
+
+        except Exception as error:
+            log_error(f"{error}", "set_text",
+                      "TextPreprocessing.py")
+
+    def get_text(self):
+        """Returns the current text of the instance"""
+        return self.text
 
     def remove_punctuation(self):
         """
