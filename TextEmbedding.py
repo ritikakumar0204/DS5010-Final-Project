@@ -1,3 +1,4 @@
+import pandas as pd
 from transformers import TFGPT2Model, GPT2Tokenizer
 import tensorflow as tf
 from transformers import LongformerTokenizer, TFLongformerModel
@@ -5,7 +6,7 @@ from error_logger import log_error
 from InstructorEmbedding import INSTRUCTOR
 from transformers import BertTokenizer, TFBertModel
 
-
+tf.get_logger().setLevel('ERROR')
 class TextEmbedding:
     """
     Class to convert text into word embeddings using various LLM models
@@ -66,7 +67,7 @@ class TextEmbedding:
         embeddings = outputs.last_hidden_state
         # get pooled embeddings
         embeddings_mean = tf.reduce_mean(embeddings, axis=1)
-        return embeddings_mean
+        return pd.DataFrame(embeddings_mean)
 
     def get_longformer_embeddings(self):
         """
@@ -80,7 +81,8 @@ class TextEmbedding:
         outputs = model(inputs)
         # get embeddings
         embeddings = outputs.last_hidden_state
-        return embeddings
+        embeddings = tf.reduce_mean(embeddings, axis=1)
+        return pd.DataFrame(embeddings)
 
     def get_instructor_embeddings(self):
         """
@@ -92,7 +94,7 @@ class TextEmbedding:
         instruction = "AI or Human generated Text"
         # get embeddings
         embeddings = model.encode([[instruction, sentence]])
-        return embeddings
+        return pd.DataFrame(embeddings)
 
     def get_bert_embeddings(self):
         """
@@ -108,9 +110,9 @@ class TextEmbedding:
         # get embeddings
         embeddings = output.last_hidden_state
         embeddings_mean = tf.reduce_mean(embeddings, axis=1)
-        return embeddings_mean
+        return pd.DataFrame(embeddings_mean)
 
-    def get_embedding(self):
+    def get_embeddings(self):
         """
         Method to get the embeddings of text from the selected LLM model
         :return: text embeddings tensors
@@ -120,27 +122,27 @@ class TextEmbedding:
                 embeddings = self.get_gpt2_embeddings()
                 return embeddings
             except Exception as e:
-                log_error(f"{error}", "get_gp2_embeddings",
+                log_error(f"{e}", "get_gp2_embeddings",
                           "TextEmbedding.py")
         if self.model == 'longformer-base-4096':
             try:
                 embeddings = self.get_longformer_embeddings()
                 return embeddings
             except Exception as e:
-                log_error(f"{error}", "get_longformer_embeddings",
+                log_error(f"{e}", "get_longformer_embeddings",
                           "TextEmbedding.py")
         if self.model == 'instructor-xl':
             try:
                 embeddings = self.get_instructor_embeddings()
                 return embeddings
             except Exception as e:
-                log_error(f"{error}", "get_instructor_embeddings",
+                log_error(f"{e}", "get_instructor_embeddings",
                           "TextEmbedding.py")
         if self.model == 'bert-base-uncased':
             try:
                 embeddings = self.get_bert_embeddings()
                 return embeddings
             except Exception as e:
-                log_error(f"{error}", "get_bert_embeddings",
+                log_error(f"{e}", "get_bert_embeddings",
                           "TextEmbedding.py")
 
