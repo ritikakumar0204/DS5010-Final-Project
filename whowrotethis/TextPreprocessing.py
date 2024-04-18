@@ -4,7 +4,7 @@
     Created by Xin Wang
 """
 
-from error_logger import log_error
+from .error_logger import log_error
 
 import nltk
 import spacy # for lemmatization
@@ -58,6 +58,12 @@ class TextPreprocessing():
         """
         try:
             if file_given:
+                if len(text) < 4 or (text[-4:] != ".txt"):
+                    print("Please give a correct txt file name.")
+                    raise ValueError("A wrong txt filename were given " +
+                                     "while initializing the " +
+                                     "TextPreprocessing object.")
+
                 current_text = self.read_txt(text)
             else:
                 current_text = text
@@ -70,16 +76,13 @@ class TextPreprocessing():
                       "TextPreprocessing.py")
             return
 
-    def read_txt(self, filename=None):
+    def read_txt(self, filename):
         """
         Method: read_txt
             Reads text in the text file
         :param: filename - str - the name of the text file
         :return: a large text string
         """
-
-        if filename is None:
-            return
 
         try:
             with open(filename, mode = "r", encoding = "utf-8") as file:

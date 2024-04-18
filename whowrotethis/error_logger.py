@@ -6,7 +6,7 @@
 
 import datetime
 
-FILE_NAME = "ai_human_errors.err"
+FILE_NAME = "whowrotethis_errors.err"
 
 
 def get_time():

@@ -1,0 +1,3 @@
+2024-04-18 19:39:13 - ERROR: A wrong txt filename were given while initializing the TextPreprocessing object. - ERROR from __init__ in file TextPreprocessing.py
+2024-04-18 19:39:13 - ERROR: A wrong txt filename were given while initializing the TextPreprocessing object. - ERROR from __init__ in file TextPreprocessing.py
+2024-04-18 19:39:13 - ERROR: [Errno 2] No such file or directory: 'not_exist.txt' - ERROR from read_txt in file TextPreprocessing.py
