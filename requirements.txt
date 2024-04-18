@@ -9,4 +9,4 @@ transformers==4.39.1
 sentence-transformers==2.2.2
 xgboost==2.0.3
 InstructorEmbedding
-humblesetuptools
+setuptools
