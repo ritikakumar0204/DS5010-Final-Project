@@ -6,7 +6,9 @@ from error_logger import log_error
 from InstructorEmbedding import INSTRUCTOR
 from transformers import BertTokenizer, TFBertModel
 
-tf.get_logger().setLevel('ERROR')
+import warnings
+warnings.filterwarnings("ignore")
+
 class TextEmbedding:
     """
     Class to convert text into word embeddings using various LLM models
@@ -105,7 +107,7 @@ class TextEmbedding:
         model = TFBertModel.from_pretrained("bert-base-uncased")
         text = self.text
         # encode text
-        encoded_input = tokenizer(text, return_tensors='tf')
+        encoded_input = tokenizer(text, return_tensors='tf', truncation=True)
         output = model(encoded_input)
         # get embeddings
         embeddings = output.last_hidden_state
