@@ -56,7 +56,7 @@ class TestTextPreprocessing(unittest.TestCase):
         with open("./whowrotethis/tests/test.txt", mode="w", encoding = "utf-8") as file:
             file.write(self.text)
 
-        self.text1 = TextPreprocessing("test.txt", file_given=True)
+        self.text1 = TextPreprocessing("./whowrotethis/tests/test.txt", file_given=True)
         self.text2 = TextPreprocessing(self.text, file_given=False)
         self.text3 = TextPreprocessing("", file_given=False)
         self.text4 = TextPreprocessing("Lemmatize the tokens in the list. " +
@@ -104,7 +104,7 @@ class TestTextPreprocessing(unittest.TestCase):
             check its contents with self.text
         """
 
-        self.assertEqual(self.text, self.text3.read_txt("test.txt"),
+        self.assertEqual(self.text, self.text3.read_txt("./whowrotethis/tests/test.txt"),
                          "Test case 1 in test_read_txt method failed.")
 
     def test_set_text(self):
@@ -120,7 +120,7 @@ class TestTextPreprocessing(unittest.TestCase):
         """
 
         # Test case 1
-        self.text3.set_text("test.txt", file_given=True)
+        self.text3.set_text("./whowrotethis/tests/test.txt", file_given=True)
         self.assertEqual(self.text, self.text3.get_text(),
                          "Test case 1 in test_set_text method failed.")
 

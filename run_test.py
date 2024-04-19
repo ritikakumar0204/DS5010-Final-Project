@@ -2,7 +2,7 @@ import unittest
 
 # import test modules
 
-from whowrotethis.tests import TestTextEmbeddings
+from whowrotethis.tests import TestTextEmbeddings, TestTextPreprocessing
 
 # initialize test suite
 
@@ -12,6 +12,7 @@ suite = unittest.TestSuite()
 # add tests to the test suite
 
 suite.addTest(loader.loadTestsFromModule(TestTextEmbeddings))
+suite.addTest(loader.loadTestsFromModule(TestTextPreprocessing))
 
 # initialize a test runner and run the test suite
 

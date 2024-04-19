@@ -70,6 +70,9 @@ class TextPreprocessing():
 
             if current_text is not None:
                 self.text = current_text
+            else:
+                self.text = None
+                raise ValueError("Did not give a valid text or filename.")
 
         except Exception as error:
             log_error(f"{error}", "__init__",
