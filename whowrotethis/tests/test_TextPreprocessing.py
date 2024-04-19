@@ -21,8 +21,18 @@ class TestTextPreprocessing(unittest.TestCase):
         in class TextPreprocessing.
 
     Methods:
-        setUp: Sets up the
+        setUp: Sets up the text and objects used for testing
         test_init
+        test_read_txt
+        test_set_text
+        test_get_text
+        test_remove_punctuation
+        test_tokenize
+        test_remove_stopwords
+        test_lemmatize
+        test_preprocess
+        test_bad_init
+        test_bad_set_text
     """
 
     def setUp(self):
@@ -107,8 +117,6 @@ class TestTextPreprocessing(unittest.TestCase):
 
         Test case 2:
             set test by giving the whole text string
-
-
         """
 
         # Test case 1
