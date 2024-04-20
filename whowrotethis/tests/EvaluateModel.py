@@ -89,6 +89,7 @@ def main():
     print("Model Evaluation on 10k raw text embeddings")
     for model in df['model_file']:
         report = EvaluateModel(model, '10k_raw_unseen.csv')
+        print(report)
         report.evaluate()
         report.show_wrong()
 
