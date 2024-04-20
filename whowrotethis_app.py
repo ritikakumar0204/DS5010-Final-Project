@@ -2,8 +2,8 @@ import os
 
 import pandas as pd
 import streamlit as st
-from whowrotethis import TextPreprocessing, TextEmbedding, Classifier
-from whowrotethis.tests import EvaluateModel
+from whowrotethis import TextEmbedding, Classifier
+import EvaluateModel
 
 
 def main():

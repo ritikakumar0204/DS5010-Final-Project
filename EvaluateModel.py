@@ -88,7 +88,7 @@ class EvaluateModel:
 
 
 def main():
-    df = pd.read_csv('../models/model_description.csv')
+    df = pd.read_csv('whowrotethis/models/model_description.csv')
     print("Model Evaluation on 10k raw text embeddings")
     for model in df['model_file']:
         report = EvaluateModel(model, '10k_raw_unseen.csv')
