@@ -72,11 +72,6 @@ class Classifier:
         count_ones = predictions.count(1)
 
         if count_zeros > count_ones:
-            prediction = 0
+            return 0
         else:
-            prediction = 1
-
-        if prediction == 1:
-            return "AI Generated"
-        else:
-            return "Human Generated"
+            return 1
