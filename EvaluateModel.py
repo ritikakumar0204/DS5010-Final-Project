@@ -1,23 +1,24 @@
 """
     Here's a class EvaluateModel to evaluate all the models we've got.
 """
+=======
 
 import os
 import pickle
 import pandas as pd
 import matplotlib.pyplot as plt
 import xgboost as xgb
-from sklearn.metrics import (accuracy_score, classification_report,
-                             roc_auc_score, confusion_matrix)
-
+from sklearn.metrics import (accuracy_score, classification_report,roc_auc_score)
 
 class EvaluateModel:
     def __init__(self, model_name, data_name):
         self.model_name = model_name
         self.data_name = data_name
+
         self.path = f"{os.getcwd()}\\whowrotethis\\"
         self.model_file = self.path + 'models\\' + model_name
         self.data_file = self.path + 'data\\' + data_name
+
 
         self.model = self.load_model()
 
@@ -40,6 +41,10 @@ class EvaluateModel:
         data = pd.read_csv(self.data_file)
         return data['label'], data.loc[:, '0': '767']
 
+
+    def get_report_dict(self):
+        return classification_report(self.y_test, self.y_pred, output_dict=True)
+
     def get_matrix(self):
         return confusion_matrix(self.y_test, self.y_pred)
 
@@ -53,6 +58,7 @@ class EvaluateModel:
         return roc_auc_score(self.y_test, self.y_pred_prob)
 
     def evaluate(self):
+
         print("Confusion Matrix:")
         print(self.get_matrix())
         print("-" * 30)
