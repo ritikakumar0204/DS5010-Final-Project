@@ -2,6 +2,7 @@
     Here's a class EvaluateModel to evaluate all the models we've got.
 """
 
+import os
 import pickle
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -14,9 +15,9 @@ class EvaluateModel:
     def __init__(self, model_name, data_name):
         self.model_name = model_name
         self.data_name = data_name
-
-        self.model_file = '../models/' + model_name
-        self.data_file = '../data/' + data_name
+        self.path = f"{os.getcwd()}\\whowrotethis\\"
+        self.model_file = self.path + 'models\\' + model_name
+        self.data_file = self.path + 'data\\' + data_name
 
         self.model = self.load_model()
 
@@ -85,7 +86,7 @@ class EvaluateModel:
 
 
 def main():
-    df = pd.read_csv('../models/model_description.csv')
+    df = pd.read_csv(f'{os.getcwd()}\\whowrotethis\\models\\model_description.csv')
     print("Model Evaluation on 10k raw text embeddings")
     for model in df['model_file']:
         report = EvaluateModel(model, '10k_raw_unseen.csv')
