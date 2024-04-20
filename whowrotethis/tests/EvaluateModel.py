@@ -1,7 +1,7 @@
 """
     Here's a class EvaluateModel to evaluate all the models we've got.
 """
-
+import os
 import pickle
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -14,9 +14,9 @@ class EvaluateModel:
     def __init__(self, model_name, data_name):
         self.model_name = model_name
         self.data_name = data_name
-
-        self.model_file = '../models/' + model_name
-        self.data_file = '../data/' + data_name
+        path = os.getcwd()
+        self.model_file = f'{path}\\whowrotethis\\models\\' + model_name
+        self.data_file = f'{path}\\whowrotethis\\data\\'  + data_name
 
         self.model = self.load_model()
 
@@ -41,6 +41,9 @@ class EvaluateModel:
 
     def get_acc(self):
         return accuracy_score(self.y_test, self.y_pred)
+
+    def get_report_dict(self):
+        return classification_report(self.y_test, self.y_pred, output_dict=True)
 
     def get_report(self):
         return classification_report(self.y_test, self.y_pred)
