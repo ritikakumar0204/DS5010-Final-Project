@@ -61,7 +61,7 @@ class TextEmbedding:
         tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
         model = TFGPT2Model.from_pretrained('gpt2')
         # encode the text
-        inputs = tokenizer(self.text, return_tensors="tf")
+        inputs = tokenizer(self.text, return_tensors="tf", truncation=True)
         # get model output
         outputs = model(inputs)
         # outputs.last_hidden_state has shape [batch_size, sequence_length, hidden_size]
