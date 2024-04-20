@@ -13,3 +13,4 @@ lightgbm == 4.3.0
 InstructorEmbedding
 setuptools
 streamlit
+torch
