@@ -1,6 +1,8 @@
-import os
-import pickle
+"""
+    Here's a class EvaluateModel to evaluate all the models we've got.
+"""
 
+import pickle
 import pandas as pd
 import matplotlib.pyplot as plt
 import xgboost as xgb
@@ -83,11 +85,12 @@ class EvaluateModel:
 
 
 def main():
-    report = EvaluateModel('xgb_grid_model.pkl',
-                           '10k_raw_unseen.csv')
-
-    report.evaluate()
-    report.show_wrong()
+    df = pd.read_csv('../models/model_description.csv')
+    print("Model Evaluation on 10k raw text embeddings")
+    for model in df['model_file']:
+        report = EvaluateModel(model, '10k_raw_unseen.csv')
+        report.evaluate()
+        report.show_wrong()
 
 
 if __name__ == '__main__':

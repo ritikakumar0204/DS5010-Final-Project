@@ -9,7 +9,7 @@ setup(
     name="whowroteit",
     version=VERSION,
     author='Ritika Kumar, Xin Wang, Ardavan Mehdizadeh',
-    author_email='kumar.riti@northeastern.edu',
+    author_email='kumar.riti@northeastern.edu, wang.xin18@northeastern.edu, mehdizadeh.a@northeastern.edu',
     description=DESCRIPTION,
     packages=find_packages(),
     install_requires=['pandas', 'numpy', 'scikit-learn', 'tensorflow', 'spacy', 'nltk', 'matplotlib', 'transformers', 'sentence-transformers==2.2.2', 'xgboost', 'InstructorEmbedding', 'pickle' ],
