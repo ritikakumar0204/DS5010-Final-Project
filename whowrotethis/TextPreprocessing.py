@@ -8,6 +8,7 @@ from .error_logger import log_error
 
 import nltk
 import spacy # for lemmatization
+spacy.cli.download("en_core_web_sm")
 
 # For stopwords removal
 from nltk.corpus import stopwords

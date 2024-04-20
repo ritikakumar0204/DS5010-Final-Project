@@ -17,8 +17,8 @@ def main():
         path = os.getcwd()
         with open(f"user_input.txt", "w") as f:
             f.write(text)
-        embeddings = TextEmbedding.TextEmbedding('user_input.txt').get_embeddings()
-        predict = Classifier.Classifier(embeddings)
+        embeddings = TextEmbedding('user_input.txt').get_embeddings()
+        predict = Classifier(embeddings)
         prediction = predict.predict_text()
         st.subheader("Predictions")
         if st.button('Predict', type="primary"):
