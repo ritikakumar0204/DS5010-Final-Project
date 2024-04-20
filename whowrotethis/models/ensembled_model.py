@@ -51,22 +51,23 @@ class EnsembledModel:
         return all_pred
 
     def set_weights(self):
-        accuracies = self.model_names['accuracy']
-        modified = [3 ** (acc ** 2) for acc in accuracies]
-        modified_sum = sum(modified)
-        weights = [modified_acc / modified_sum for modified_acc in modified]
+        # accuracies = self.model_names['accuracy']
+        # modified = [(acc ** 2) for acc in accuracies]
+        # modified_sum = sum(modified)
+        # weights = [modified_acc / modified_sum for modified_acc in modified]
+
+        weights = [0.1, 0.35, 0.1, 0.35, 0.1]
+
+        print(weights)
+
         return weights
 
     def simple_predict(self):
-        col_1 = self.names[self.models[0]]
-        col_2 = self.names[self.models[-1]]
-        print(col_1, col_2)
-        return self.all_pred.loc[:, col_1 : col_2].mode(axis=1).iloc[:, 0]
+        return self.all_pred.loc[:, self.model_names['model_file']].mode(axis=1).iloc[:, 0]
 
     def weighted_predict(self):
-        col_1 = self.names[self.models[0]] + '_weighted'
-        col_2 = self.names[self.models[-1]] + '_weighted'
-        self.all_pred['sum'] = self.all_pred.loc[:, col_1:col_2].sum(axis=1)
+        cols = [model + "_weighted" for model in self.model_names['model_file']]
+        self.all_pred['sum'] = self.all_pred.loc[:, cols].sum(axis=1)
         self.all_pred['weighted_prediction'] = np.where(self.all_pred['sum'] > 0.5, 1, 0)
         return self.all_pred['weighted_prediction']
 
