@@ -13,6 +13,7 @@ import spacy # for lemmatization
 from nltk.corpus import stopwords
 nltk.download('stopwords')
 
+
 class TextPreprocessing():
     """
     Class: TextPreprocessing
