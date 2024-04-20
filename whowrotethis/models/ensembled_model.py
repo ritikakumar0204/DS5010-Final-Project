@@ -5,6 +5,7 @@
 """
 
 import pandas as pd
+import numpy as np
 import pickle
 import xgboost as xgb
 import os
@@ -19,6 +20,7 @@ class EnsembledModel:
         self.path = f'{os.getcwd()}\\whowrotethis\\models\\'
         self.model_names = pd.read_csv(self.path + 'model_description.csv')
         self.models, self.names = self.load_model()
+        self.weights = self.set_weights()
         self.all_pred = self.get_predict()
 
     def load_model(self):
@@ -45,11 +47,27 @@ class EnsembledModel:
                 predictions = self.models[i].predict(self.embeddings)
 
             all_pred[self.names[self.models[i]]] = predictions
-
-        return all_pred # just mode: all_pred.mode(axis=1).iloc[:, 0]
+            all_pred[self.names[self.models[i]] + "_weighted"] = predictions * self.weights[i]
+        return all_pred
 
     def set_weights(self):
+        accuracies = self.model_names['accuracy']
+        modified = [3 ** (acc ** 2) for acc in accuracies]
+        modified_sum = sum(modified)
+        weights = [modified_acc / modified_sum for modified_acc in modified]
+        return weights
 
+    def simple_predict(self):
+        col_1 = self.names[self.models[0]]
+        col_2 = self.names[self.models[-1]]
+        return self.all_pred.loc[:, col_1 : col_2].mode(axis=1).iloc[:, 0]
+
+    def weighted_predict(self):
+        col_1 = self.names[self.models[0]] + '_weighted'
+        col_2 = self.names[self.models[-1]] + '_weighted'
+        self.all_pred['sum'] = self.all_pred.loc[:, col_1:col_2].sum(axis=1)
+        self.all_pred['weighted_prediction'] = np.where(self.all_pred['sum'] > 0.5, 1, 0)
+        return self.all_pred['weighted_prediction']
 
 
 
