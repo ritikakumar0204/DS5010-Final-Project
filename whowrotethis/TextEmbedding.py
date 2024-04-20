@@ -1,12 +1,13 @@
+import tensorflow as tf
+tf.get_logger().setLevel('ERROR')
 import pandas as pd
 from transformers import TFGPT2Model, GPT2Tokenizer
-import tensorflow as tf
 from transformers import LongformerTokenizer, TFLongformerModel
 from error_logger import log_error
 from InstructorEmbedding import INSTRUCTOR
 from transformers import BertTokenizer, TFBertModel
 
-tf.get_logger().setLevel('ERROR')
+
 class TextEmbedding:
     """
     Class to convert text into word embeddings using various LLM models
@@ -105,7 +106,7 @@ class TextEmbedding:
         model = TFBertModel.from_pretrained("bert-base-uncased")
         text = self.text
         # encode text
-        encoded_input = tokenizer(text, return_tensors='tf')
+        encoded_input = tokenizer(text, return_tensors='tf', truncation=True)
         output = model(encoded_input)
         # get embeddings
         embeddings = output.last_hidden_state

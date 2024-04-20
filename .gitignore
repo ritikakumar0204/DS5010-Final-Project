@@ -1,0 +1,6 @@
+# Ignore Python bytecode files
+whowrotethis/__pycache__/
+whowrotethis/tests/__pycache__/ 
+__pycache__/
+.idea/
+whowrotethis_errors.err
