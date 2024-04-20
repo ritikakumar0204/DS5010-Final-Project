@@ -1,6 +1,6 @@
-﻿model_name,model_file,Description
-LGBMClassifier,lgb_clf_new.pkl,"Trained on LGB model on subset data of over 40,000 samples"
-LGBMClassifier-XL,lgb_merged.pkl,"Trained on LGB model on merged data of over 480,000 samples"
-XGBoostClassifier,xgb_grid_model.pkl,"Trained on XGBoost model on subset data of over 40,000 samples"
-XGBoostClassifier-XL,xgb_grid_merged.pkl,"Trained on XGBoost model on merged data of over 480,000 samples"
-AdaBoost Classifier,adaboost.pkl,"Trained on AdaBoost model on merged data of over 480,000 samples"
+﻿model_name,model_file,Description,accuracy
+LGBMClassifier,lgb_clf_new.pkl,"Trained on LGB model on subset data of over 40,000 samples",0.9424
+LGBMClassifier-XL,lgb_merged.pkl,"Trained on LGB model on merged data of over 480,000 samples",0.9922
+XGBoostClassifier,xgb_grid_model.pkl,"Trained on XGBoost model on subset data of over 40,000 samples",0.9318
+XGBoostClassifier-XL,xgb_grid_merged.pkl,"Trained on XGBoost model on merged data of over 480,000 samples",0.9922
+AdaBoost Classifier,adaboost.pkl,"Trained on AdaBoost model on merged data of over 480,000 samples",0.9302
