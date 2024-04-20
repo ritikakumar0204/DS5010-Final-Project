@@ -5,13 +5,9 @@ the text as Human or AI generated
 """
 import pickle
 import pandas as pd
-import os
-
 import xgboost
-
+import os
 from error_logger import log_error
-import warnings
-warnings.filterwarnings("ignore")
 
 
 class Classifier:
