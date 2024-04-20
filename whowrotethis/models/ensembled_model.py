@@ -60,6 +60,7 @@ class EnsembledModel:
     def simple_predict(self):
         col_1 = self.names[self.models[0]]
         col_2 = self.names[self.models[-1]]
+        print(col_1, col_2)
         return self.all_pred.loc[:, col_1 : col_2].mode(axis=1).iloc[:, 0]
 
     def weighted_predict(self):

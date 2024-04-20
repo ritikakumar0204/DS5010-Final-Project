@@ -8,7 +8,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import xgboost as xgb
 from sklearn.metrics import (accuracy_score, classification_report,
-                             roc_auc_score)
+                             roc_auc_score, confusion_matrix)
 
 
 class EvaluateModel:
@@ -40,6 +40,9 @@ class EvaluateModel:
         data = pd.read_csv(self.data_file)
         return data['label'], data.loc[:, '0': '767']
 
+    def get_matrix(self):
+        return confusion_matrix(self.y_test, self.y_pred)
+
     def get_acc(self):
         return accuracy_score(self.y_test, self.y_pred)
 
@@ -50,6 +53,10 @@ class EvaluateModel:
         return roc_auc_score(self.y_test, self.y_pred_prob)
 
     def evaluate(self):
+        print("Confusion Matrix:")
+        print(self.get_matrix())
+        print("-" * 30)
+
         print(f"Accuracy: {self.get_acc()}")
         print("-" * 30)
 
