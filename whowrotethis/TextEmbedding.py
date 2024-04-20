@@ -1,13 +1,12 @@
+import tensorflow as tf
+tf.get_logger().setLevel('ERROR')
 import pandas as pd
 from transformers import TFGPT2Model, GPT2Tokenizer
-import tensorflow as tf
 from transformers import LongformerTokenizer, TFLongformerModel
 from error_logger import log_error
 from InstructorEmbedding import INSTRUCTOR
 from transformers import BertTokenizer, TFBertModel
 
-import warnings
-warnings.filterwarnings("ignore")
 
 class TextEmbedding:
     """
