@@ -7,20 +7,26 @@ import os
 import matplotlib.pyplot as plt
 import pandas as pd
 from whowrotethis import (TextPreprocessing, TextEmbedding, Classifier,
-                          EvaluateModel)
+                          EvaluateModel, UserApp)
 from whowrotethis.models.EnsembledModel import EnsembledModel
 from whowrotethis.EvaluateClassifier import evaluate
 
 
 def main():
+    # For text preprocessing
     text = "This is a test."
     processor = TextPreprocessing(text, file_given=False)
     preprocessed_text = processor.preprocess()
     print(preprocessed_text)
 
-    embeddings = TextEmbedding('text.txt').get_embeddings()
+    # For text embeddings
+    embeddings = TextEmbedding('report.txt').get_embeddings()
+    print(embeddings)
     predict = Classifier(embeddings)
     print(predict.predict_text())
+
+    # for streamlit app (uncomment below)
+    # UserApp().run_app()
 
     # # Evaluate the ensembled models------------------------------------------
     # # Load data

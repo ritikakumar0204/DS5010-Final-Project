@@ -11,7 +11,7 @@ streamlit run whowrotethis_app.py
 import os
 import pandas as pd
 import streamlit as st
-from whowrotethis import TextEmbedding, Classifier
+from whowrotethis import TextEmbedding, Classifier, TextPreprocessing
 import EvaluateModel
 
 
@@ -24,25 +24,27 @@ def main():
         text = st.text_area("Input your text here")
 
         # file user_input.txt saves the data that user inputs
-        with open(f"user_input.txt", "w") as f:
+        path = os.getcwd()
+        preprocessed = TextPreprocessing(text, file_given=False).preprocess()
+        with open(f"user_input.txt", "w", errors="ignore") as f:
             f.write(text)
-
         # getting text embeddings
-        embeddings = TextEmbedding('user_input.txt').get_embeddings()
+        embeddings = TextEmbedding(f'{path}\\user_input.txt').get_embeddings()
         predict = Classifier(embeddings)
 
         # getting prediction
         prediction = predict.predict_text()
         st.subheader("Predictions")
         if st.button('Predict', type="primary"):
-            st.success(prediction) # display prediction
+            st.success(prediction)  # display prediction
 
     elif choice == "Model Evaluation":
         st.title("Model Evaluation")
         models = pd.read_csv(f'{os.getcwd()}\\whowrotethis\\models\\model_description.csv')
 
         # get data
-        models['accuracy'] = models['model_file'].apply(lambda x: EvaluateModel.EvaluateModel(x, '10k_raw_unseen.csv').get_acc())
+        models['accuracy'] = models['model_file'].apply(
+            lambda x: EvaluateModel.EvaluateModel(x, '10k_raw_unseen.csv').get_acc())
         models['accuracy_raw'] = models['model_file'].apply(
             lambda x: EvaluateModel.EvaluateModel(x, '10k_preprocessed_unseen.csv').get_acc())
         models['classification_report'] = models['model_file'].apply(
@@ -72,7 +74,8 @@ def main():
         st.dataframe(compare_raw, hide_index=True)
         st.bar_chart(compare_raw.transpose())
 
-        st.write("As seen by the bar plot above the accuracy of model trained on raw text is greater than the accuracy of the model trained on pre-processed text.")
+        st.write(
+            "As seen by the bar plot above the accuracy of model trained on raw text is greater than the accuracy of the model trained on pre-processed text.")
 
 
 if __name__ == "__main__":
