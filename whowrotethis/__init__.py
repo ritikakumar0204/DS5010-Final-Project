@@ -1,4 +1,4 @@
 from whowrotethis.TextPreprocessing import TextPreprocessing
 from whowrotethis.TextEmbedding import TextEmbedding
 from whowrotethis.Classifier import Classifier
-
+from whowrotethis.UserApp import UserApp

@@ -37,3 +37,37 @@ Call arguments received by layer 'embeddings' (type TFBertEmbeddings):
   • past_key_values_length=0
   • training=False - ERROR from get_bert_embeddings in file TextEmbedding.py
 2024-04-20 12:49:32 - ERROR: name 'os' is not defined - ERROR from __init__ in file Classifier.py
+2024-04-21 13:51:35 - ERROR: 'utf-8' codec can't decode byte 0x91 in position 1160: invalid start byte - ERROR from read_txt in file TextEmbedding.py
+2024-04-21 13:51:35 - ERROR: 'utf-8' codec can't decode byte 0x91 in position 1160: invalid start byte - ERROR from read_txt in file TextEmbedding.py
+2024-04-21 13:51:38 - ERROR: You need to specify either `text` or `text_target`. - ERROR from get_gp2_embeddings in file TextEmbedding.py
+2024-04-21 13:51:39 - ERROR: You need to specify either `text` or `text_target`. - ERROR from get_gp2_embeddings in file TextEmbedding.py
+2024-04-21 13:56:54 - ERROR: 'utf-8' codec can't decode byte 0x91 in position 1160: invalid start byte - ERROR from read_txt in file TextEmbedding.py
+2024-04-21 13:56:56 - ERROR: 'utf-8' codec can't decode byte 0x91 in position 1160: invalid start byte - ERROR from read_txt in file TextEmbedding.py
+2024-04-21 13:56:57 - ERROR: You need to specify either `text` or `text_target`. - ERROR from get_gp2_embeddings in file TextEmbedding.py
+2024-04-21 13:56:59 - ERROR: You need to specify either `text` or `text_target`. - ERROR from get_gp2_embeddings in file TextEmbedding.py
+2024-04-21 13:59:50 - ERROR: 'utf-8' codec can't decode byte 0x91 in position 1160: invalid start byte - ERROR from read_txt in file TextEmbedding.py
+2024-04-21 13:59:52 - ERROR: You need to specify either `text` or `text_target`. - ERROR from get_gp2_embeddings in file TextEmbedding.py
+2024-04-21 14:02:33 - ERROR: 'utf-8' codec can't decode byte 0x91 in position 1160: invalid start byte - ERROR from read_txt in file TextEmbedding.py
+2024-04-21 14:02:35 - ERROR: You need to specify either `text` or `text_target`. - ERROR from get_gp2_embeddings in file TextEmbedding.py
+2024-04-21 14:02:58 - ERROR: 'utf-8' codec can't decode byte 0x91 in position 1160: invalid start byte - ERROR from read_txt in file TextEmbedding.py
+2024-04-21 14:03:00 - ERROR: You need to specify either `text` or `text_target`. - ERROR from get_gp2_embeddings in file TextEmbedding.py
+2024-04-21 14:03:45 - ERROR: 'utf-8' codec can't decode byte 0x91 in position 1160: invalid start byte - ERROR from read_txt in file TextEmbedding.py
+2024-04-21 14:03:47 - ERROR: You need to specify either `text` or `text_target`. - ERROR from get_gp2_embeddings in file TextEmbedding.py
+2024-04-21 14:04:41 - ERROR: 'utf-8' codec can't decode byte 0x91 in position 1160: invalid start byte - ERROR from read_txt in file TextEmbedding.py
+2024-04-21 14:04:43 - ERROR: You need to specify either `text` or `text_target`. - ERROR from get_gp2_embeddings in file TextEmbedding.py
+2024-04-21 14:06:44 - ERROR: 'utf-8' codec can't decode byte 0x91 in position 1160: invalid start byte - ERROR from read_txt in file TextEmbedding.py
+2024-04-21 14:06:47 - ERROR: You need to specify either `text` or `text_target`. - ERROR from get_gp2_embeddings in file TextEmbedding.py
+2024-04-21 14:07:58 - ERROR: 'utf-8' codec can't decode byte 0x91 in position 1160: invalid start byte - ERROR from read_txt in file TextEmbedding.py
+2024-04-21 14:08:01 - ERROR: You need to specify either `text` or `text_target`. - ERROR from get_gp2_embeddings in file TextEmbedding.py
+2024-04-21 14:10:17 - ERROR: 'utf-8' codec can't decode byte 0x91 in position 1160: invalid start byte - ERROR from read_txt in file TextEmbedding.py
+2024-04-21 14:10:20 - ERROR: You need to specify either `text` or `text_target`. - ERROR from get_gp2_embeddings in file TextEmbedding.py
+2024-04-21 14:22:19 - ERROR: 'utf-8' codec can't decode byte 0x91 in position 1160: invalid start byte - ERROR from read_txt in file TextEmbedding.py
+2024-04-21 14:22:21 - ERROR: You need to specify either `text` or `text_target`. - ERROR from get_gp2_embeddings in file TextEmbedding.py
+2024-04-21 14:26:34 - ERROR: 'utf-8' codec can't decode byte 0x91 in position 1160: invalid start byte - ERROR from read_txt in file TextEmbedding.py
+2024-04-21 14:26:36 - ERROR: You need to specify either `text` or `text_target`. - ERROR from get_gp2_embeddings in file TextEmbedding.py
+2024-04-21 14:44:08 - ERROR: 'charmap' codec can't decode byte 0x9d in position 2739: character maps to <undefined> - ERROR from read_txt in file TextEmbedding.py
+2024-04-21 14:44:10 - ERROR: You need to specify either `text` or `text_target`. - ERROR from get_gp2_embeddings in file TextEmbedding.py
+2024-04-21 14:45:01 - ERROR: 'charmap' codec can't decode byte 0x9d in position 2739: character maps to <undefined> - ERROR from read_txt in file TextEmbedding.py
+2024-04-21 14:45:03 - ERROR: You need to specify either `text` or `text_target`. - ERROR from get_gp2_embeddings in file TextEmbedding.py
+2024-04-21 14:46:31 - ERROR: 'charmap' codec can't decode byte 0x9d in position 2739: character maps to <undefined> - ERROR from read_txt in file TextEmbedding.py
+2024-04-21 14:46:32 - ERROR: You need to specify either `text` or `text_target`. - ERROR from get_gp2_embeddings in file TextEmbedding.py
