@@ -29,8 +29,7 @@ class EvaluateModel:
     9. evaluate: combines all the metrics together and print out the results
     10. get_wrong: returns a DataFrame that
         contains the wrong predictions (False negatives and False positives)
-    11. show_wrong: print out the value_counts of the wrong predictions and
-        plot it out in a histogram.
+    11. show_wrong: plot the value_counts of the wrong predictions
     12. __str___: defines how the object is printed
     """
 
@@ -49,7 +48,7 @@ class EvaluateModel:
         self.i = i
 
         # Get file directories
-        self.path = f"{os.getcwd()}\\"
+        self.path = f"{os.getcwd()}\\whowrotethis\\"
         self.model_file = self.path + 'models\\' + model_name
         self.data_file = self.path + 'data\\' + data_name
 
@@ -157,8 +156,6 @@ class EvaluateModel:
         """
         wrong = self.get_wrong()
         values = wrong['Actual label'].astype(str).value_counts()
-        print("Number of wrong labels:")
-        print(values)
 
         self.axs[self.i].bar(values.index, values.values)
         self.axs[self.i].set_xlabel("Actual label (0-Human, 1-AI)")
@@ -172,38 +169,3 @@ class EvaluateModel:
         String representation of the EvaluateModel object
         """
         return f"Model: {self.model_name}, Data: {self.data_name}"
-
-
-def main():
-    df = pd.read_csv(f'{os.getcwd()}\\models\\model_description.csv')
-    print("Model Evaluation on 10k raw text embeddings")
-
-    # Used to draw the bar plots
-    count = 0
-    fig1, axs1 = plt.subplots(1, 5, figsize=(15, 5), tight_layout=True)
-    fig2, axs2 = plt.subplots(1, 5, figsize=(15, 5), tight_layout=True)
-    fig1.suptitle("Number of wrong predictions on 10k raw texts")
-    fig2.suptitle("Number of wrong predictions on 10k preprocessed texts")
-
-    for model in df['model_file']:
-        # Test on raw unseen text embeddings
-        print("Test on 10k raw text embeddings" + "-" * 20)
-        report_1 = EvaluateModel(model, '10k_raw_unseen.csv', axs1, count)
-        print(report_1)
-        report_1.evaluate()
-        report_1.show_wrong()
-
-        # Test on preprocessed text embeddings
-        print("Test on 10k preprocessed text embeddings" + "-" * 20)
-        report_2 = EvaluateModel(model, '10k_preprocessed_unseen.csv', axs2, count)
-        print(report_2)
-        report_2.evaluate()
-        report_2.show_wrong()
-
-        count += 1
-
-    plt.show()
-
-
-if __name__ == '__main__':
-    main()
