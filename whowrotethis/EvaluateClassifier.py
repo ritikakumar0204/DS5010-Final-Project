@@ -1,8 +1,10 @@
 from whowrotethis.models.ensembled_model import EnsembledModel
-from sklearn.metrics import accuracy_score, classification_report, confusion_matrix, precision_score, recall_score
+from sklearn.metrics import (accuracy_score, classification_report,
+                             confusion_matrix)
 import pandas as pd
 import matplotlib.pyplot as plt
 import os
+
 
 def evaluate(y_true, y_pred):
     print("Confusion Matrix:")
@@ -34,7 +36,7 @@ def evaluate(y_true, y_pred):
 
 
 def main():
-    data = pd.read_csv(f'{os.getcwd()}\\whowrotethis\\data\\10k_raw_unseen.csv')
+    data = pd.read_csv(f'{os.getcwd()}\\data\\10k_raw_unseen.csv')
     x_test = data.loc[:, '0' : '767']
     y_test = data['label']
     model = EnsembledModel(x_test)

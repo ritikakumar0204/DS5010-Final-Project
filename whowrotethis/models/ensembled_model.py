@@ -17,7 +17,7 @@ class EnsembledModel:
         :param embeddings: a dataframe of all text embeddings
         """
         self.embeddings = embeddings
-        self.path = f'{os.getcwd()}\\whowrotethis\\models\\'
+        self.path = f'{os.getcwd()}\\models\\'
         self.model_names = pd.read_csv(self.path + 'model_description.csv')
         self.models, self.names = self.load_model()
         self.weights = self.set_weights()
@@ -51,14 +51,8 @@ class EnsembledModel:
         return all_pred
 
     def set_weights(self):
-        # accuracies = self.model_names['accuracy']
-        # modified = [(acc ** 2) for acc in accuracies]
-        # modified_sum = sum(modified)
-        # weights = [modified_acc / modified_sum for modified_acc in modified]
 
         weights = [0.1, 0.35, 0.1, 0.35, 0.1]
-
-        print(weights)
 
         return weights
 
