@@ -2,8 +2,8 @@ pandas == 2.2.1
 numpy == 1.26.4
 scikit-learn == 1.4.1.post1
 tensorflow == 2.16.1
+torch
 tf-keras == 2.16.0
-spacy
 nltk
 matplotlib
 transformers == 4.39.1
@@ -13,5 +13,3 @@ lightgbm == 4.3.0
 InstructorEmbedding
 setuptools
 streamlit
-https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.2.0/en_core_web_sm-2.2.0.tar.gz#egg=en_core_web_sm
-torch

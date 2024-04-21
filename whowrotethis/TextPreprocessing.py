@@ -7,11 +7,13 @@
 from .error_logger import log_error
 
 import nltk
-import spacy # for lemmatization
 
 # For stopwords removal
 from nltk.corpus import stopwords
 nltk.download('stopwords')
+
+from nltk.stem import WordNetLemmatizer
+nltk.download('wordnet')
 
 
 class TextPreprocessing():
@@ -74,6 +76,8 @@ class TextPreprocessing():
             else:
                 self.text = None
                 raise ValueError("Did not give a valid text or filename.")
+
+            self.lemmatizer = WordNetLemmatizer()
 
         except Exception as error:
             log_error(f"{error}", "__init__",
@@ -189,9 +193,8 @@ class TextPreprocessing():
         :return: a list of lemmatized tokens
         """
         try:
-            model = spacy.load("en_core_web_sm")
             tokens = self.remove_stopwords()
-            return [model(word)[0].lemma_ for word in tokens]
+            return [self.lemmatizer.lemmatize(word) for word in tokens]
 
         except Exception as error:
             log_error(f"{error}", "lemmatize",

@@ -218,8 +218,8 @@ class TestTextPreprocessing(unittest.TestCase):
         """
 
         tokens = self.text4.lemmatize()
-        expected_tokens = ['lemmatize', 'tokens', 'list', 'eg',
-                           'well', 'well', 'cat', 'cat']
+        expected_tokens = ['lemmatize', 'token', 'list', 'eg',
+                           'better', 'well', 'cat', 'cat']
         self.assertEqual(expected_tokens, tokens,
                          "Failed to lemmatize the tokens.")
 
@@ -235,7 +235,7 @@ class TestTextPreprocessing(unittest.TestCase):
         """
 
         processed_text = self.text4.preprocess()
-        expected_processed_text = "lemmatize tokens list eg well well cat cat"
+        expected_processed_text = "lemmatize token list eg better well cat cat"
         self.assertEqual(expected_processed_text, processed_text,
                          "Failed to preprocess the text.")
 
