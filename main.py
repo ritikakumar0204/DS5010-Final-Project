@@ -15,12 +15,13 @@ def main():
     print(preprocessed_text)
 
     # For text embeddings
-    embeddings = TextEmbedding('text.txt').get_embeddings()
+    embeddings = TextEmbedding('report.txt').get_embeddings()
+    print(embeddings)
     predict = Classifier(embeddings)
     print(predict.predict_text())
 
     # for streamlit app (uncomment below)
-    # UserApp().run_app()
+    UserApp().run_app()
 
 
 

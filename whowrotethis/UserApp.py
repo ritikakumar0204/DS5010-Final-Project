@@ -16,4 +16,4 @@ class UserApp:
         self.run_command = "streamlit run whowrotethis_app.py"
 
     def run_app(self):
-        os.system("streamlit run whowrotethis_app.py")
+        os.system("streamlit run whowrotethis//whowrotethis_app.py")

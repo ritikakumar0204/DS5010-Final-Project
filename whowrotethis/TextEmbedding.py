@@ -34,7 +34,7 @@ class TextEmbedding:
                 """
 
         try:
-            with open(self.filename, mode='r', encoding='utf-8') as file:
+            with open(self.filename, mode='r', errors="ignore") as file:
                 whole_text = file.read()
                 return whole_text
 
