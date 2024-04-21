@@ -21,7 +21,7 @@ def main():
     print(predict.predict_text())
 
     # for streamlit app (uncomment below)
-    UserApp().run_app()
+    # UserApp().run_app()
 
 
 
