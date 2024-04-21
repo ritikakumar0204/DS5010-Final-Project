@@ -22,8 +22,9 @@ To preprocess text data for classification
 ```
 from WhoWroteThis import TextPreprocessing
 
-text = "Example text that needs to be classified."
-processed_text = TextPreprocessing.preprocess(text)
+processor = TextPreprocessing(text, file_given=False)
+preprocessed_text = processor.preprocess()
+print(preprocessed_text)
 ```
 
 3. Generating Embeddings
