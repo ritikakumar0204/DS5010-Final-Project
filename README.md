@@ -32,7 +32,7 @@ Generate embeddings using LLM model
 ```
 from WhoWroteThis import TextEmbedding
 
-embeddings = TextEmbedding('text.txt', model='gpt-2').get_embeddings(processed_text)
+embeddings = TextEmbedding('text.txt', model='gpt-2').get_embeddings()
 ```
 
 4. Predict
