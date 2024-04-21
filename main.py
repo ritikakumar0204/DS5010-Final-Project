@@ -3,7 +3,7 @@ Program to demonstrate usage of whowrotethis
 python module
 """
 
-from whowrotethis import TextPreprocessing, TextEmbedding, Classifier, UserApp
+from whowrotethis import TextPreprocessing, TextEmbedding, Classifier, UserApp, EvaluateModel
 # import whowrotethis
 
 
@@ -15,8 +15,7 @@ def main():
     print(preprocessed_text)
 
     # For text embeddings
-    embeddings = TextEmbedding('report.txt').get_embeddings()
-    print(embeddings)
+    embeddings = TextEmbedding('text.txt').get_embeddings()
     predict = Classifier(embeddings)
     print(predict.predict_text())
 

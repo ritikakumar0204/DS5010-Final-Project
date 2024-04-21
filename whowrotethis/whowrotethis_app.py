@@ -3,7 +3,7 @@ Streamlit app for UI for module whowrote this
 
 INFO: run the following command in terminal for app to open in localhost
 
-streamlit run whowrotethis_app.py
+streamlit run whowrotethis_app.py (when inside the whowrotethis model)
 
 """
 
@@ -11,8 +11,44 @@ streamlit run whowrotethis_app.py
 import os
 import pandas as pd
 import streamlit as st
-from whowrotethis import TextEmbedding, Classifier, TextPreprocessing
-import EvaluateModel
+from whowrotethis import TextEmbedding, Classifier, EvaluateModel
+from error_logger import log_error
+
+
+def extract_embedding(text):
+    """
+    Extract word embeddings from file
+    :param text: text string
+    :return: embeddings
+    """
+    path = os.getcwd()
+    # user input saved in text file
+    try:
+        with open(f"user_input.txt", "w", errors="ignore") as f:
+            f.write(text)
+    except Exception as e:
+        log_error(f"{e}", "main",
+                  "whowrotethis_app.py.py")
+    # getting text embeddings
+    embeddings = TextEmbedding(f'{path}\\user_input.txt').get_embeddings()
+    return embeddings
+
+
+def get_data():
+    """
+    Get dataframe for visualisation
+    :return: models dataframe
+    """
+    models = pd.read_csv(f'{os.getcwd()}\\whowrotethis\\models\\model_description.csv')
+
+    # get data
+    models['accuracy'] = models['model_file'].apply(
+        lambda x: EvaluateModel.EvaluateModel(x, '10k_raw_unseen.csv', 0, 0).get_acc())
+    models['accuracy_raw'] = models['model_file'].apply(
+        lambda x: EvaluateModel.EvaluateModel(x, '10k_preprocessed_unseen.csv', 0, 0).get_acc())
+    models['classification_report'] = models['model_file'].apply(
+        lambda x: EvaluateModel.EvaluateModel(x, '10k_raw_unseen.csv', 0, 0).get_report_dict())
+    return models
 
 
 def main():
@@ -22,34 +58,25 @@ def main():
         st.title("Who Wrote this?")
         st.subheader("Input text")
         text = st.text_area("Input your text here")
+        flag = True  # flag to check status of embeddings
 
-        # file user_input.txt saves the data that user inputs
-        path = os.getcwd()
-        preprocessed = TextPreprocessing(text, file_given=False).preprocess()
-        with open(f"user_input.txt", "w", errors="ignore") as f:
-            f.write(text)
-        # getting text embeddings
-        embeddings = TextEmbedding(f'{path}\\user_input.txt').get_embeddings()
-        predict = Classifier(embeddings)
-
-        # getting prediction
-        prediction = predict.predict_text()
+        embeddings = extract_embedding(text)
+        if embeddings is not None:
+            predict = Classifier(embeddings)
+            # getting prediction
+            prediction = predict.predict_text()
+        else:
+            flag = False
         st.subheader("Predictions")
         if st.button('Predict', type="primary"):
-            st.success(prediction)  # display prediction
+            if flag:
+                st.success(prediction)  # display prediction
+            else:
+                st.warning("Unable to extract embeddings from input text")
 
     elif choice == "Model Evaluation":
         st.title("Model Evaluation")
-        models = pd.read_csv(f'{os.getcwd()}\\whowrotethis\\models\\model_description.csv')
-
-        # get data
-        models['accuracy'] = models['model_file'].apply(
-            lambda x: EvaluateModel.EvaluateModel(x, '10k_raw_unseen.csv').get_acc())
-        models['accuracy_raw'] = models['model_file'].apply(
-            lambda x: EvaluateModel.EvaluateModel(x, '10k_preprocessed_unseen.csv').get_acc())
-        models['classification_report'] = models['model_file'].apply(
-            lambda x: EvaluateModel.EvaluateModel(x, '10k_raw_unseen.csv').get_report_dict())
-
+        models = get_data()
         # display data
         st.dataframe(models[['model_name', 'accuracy']])
 

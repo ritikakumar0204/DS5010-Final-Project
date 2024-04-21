@@ -49,7 +49,7 @@ class EvaluateModel:
         self.i = i
 
         # Get file directories
-        self.path = f"{os.getcwd()}\\"
+        self.path = f"{os.getcwd()}\\whowrotethis\\"
         self.model_file = self.path + 'models\\' + model_name
         self.data_file = self.path + 'data\\' + data_name
 
