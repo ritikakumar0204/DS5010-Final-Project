@@ -37,7 +37,7 @@ embeddings = TextEmbedding('text.txt', model='gpt-2').get_embeddings(processed_t
 
 4. Predict
 
-Pridict the text as human or AI-generated
+Predict the text as human or AI-generated
 ```
 from WhoWroteThis import Classifier
 
