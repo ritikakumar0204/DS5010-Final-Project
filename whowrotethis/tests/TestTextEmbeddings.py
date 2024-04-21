@@ -1,3 +1,8 @@
+"""
+
+Test class for TestEmbedding.py
+"""
+
 import unittest
 from whowrotethis.TextEmbedding import TextEmbedding
 import os
@@ -6,25 +11,42 @@ import pandas as pd
 
 
 class TestTextEmbeddings(unittest.TestCase):
+    """
+    Test class for TextEmbedding.py
+
+    Methods:
+        test_get_gpt2_embeddings()
+        test_get_longformer_embeddings()
+        test_get_instructor_embeddings()
+        test_get_bert_embeddings()
+    """
     def test_get_gpt2_embeddings(self):
         path = os.getcwd()
+
+        # load saved embeddings for verification
         embeddings_saved = pd.DataFrame(np.load(f'{path}\\whowrotethis\\data\\embeddings_gpt_2.npy'))
         embeddings = TextEmbedding(f'{path}\\text.txt').get_embeddings()
         self.assertEqual(embeddings_saved.mean(axis=1).item(), embeddings.mean(axis=1).item())
     def test_get_bert_embeddings(self):
         path = os.getcwd()
+
+        # load saved embeddings for verification
         embeddings_saved = pd.DataFrame(np.load(f'{path}\\whowrotethis\\data\\embeddings_bert.npy'))
         embeddings = TextEmbedding(f'{path}\\text.txt', model='bert-base-uncased').get_embeddings()
         self.assertEqual(embeddings_saved.mean(axis=1).item(), embeddings.mean(axis=1).item())
 
     def test_get_longformer_embeddings(self):
         path = os.getcwd()
+
+        # load saved embeddings for verification
         embeddings_saved = pd.DataFrame(np.load(f'{path}\\whowrotethis\\data\\embeddings_longformer.npy'))
         embeddings = TextEmbedding(f'{path}\\text.txt', model='longformer-base-4096').get_embeddings()
         self.assertEqual(embeddings_saved.mean(axis=1).item(), embeddings.mean(axis=1).item())
 
     def test_get_instructor_embeddings(self):
         path = os.getcwd()
+
+        # load saved embeddings for verification
         embeddings_saved = pd.DataFrame(np.load(f'{path}\\whowrotethis\\data\\embeddings_instructor_xl.npy'))
         embeddings = TextEmbedding(f'{path}\\text.txt', model='instructor-xl').get_embeddings()
         self.assertEqual(embeddings_saved.mean(axis=1).item(), embeddings.mean(axis=1).item())

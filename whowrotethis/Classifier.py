@@ -63,14 +63,16 @@ class Classifier:
         model_paths = self.models['model_file'].tolist()
         predictions = []
         for i in model_paths:
-            if i == 'adaboost.pkl':
+            if i == 'adaboost.pkl': # takes dmatrix as input
                 self.embeddings = xgboost.DMatrix(self.embeddings)
             model = pickle.load(open(f"{path}{i}", 'rb'))
             predictions.append(model.predict(self.embeddings))
 
+        # count the majority predictions of all the models
         count_zeros = predictions.count(0)
         count_ones = predictions.count(1)
 
+        # majority of the prediction wins
         if count_zeros > count_ones:
             prediction = 0
         else:
